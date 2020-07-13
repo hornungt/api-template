@@ -1,0 +1,3 @@
+function clickPoC() {
+    alert("CLICKED");
+}
