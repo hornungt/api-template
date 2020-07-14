@@ -1,4 +1,4 @@
-import { MongoClient, FilterQuery, UpdateQuery, MongoClientOptions, Db } from "mongodb";
+import { MongoClient, FilterQuery, UpdateQuery, Db } from "mongodb";
 import { Logger } from "winston";
 
 // cleanly packages mongodb interactions
@@ -9,11 +9,11 @@ export class MongoRepository {
     private db: Db;
     private logger: Logger;
 
-    constructor(connString: string, dbName: string, options: MongoClientOptions, logger: Logger) {
+    constructor(connString: string, dbName: string, logger: Logger) {
         this.dbName = dbName;
         this.logger = logger;
         // connect to db when repository obj created
-        new MongoClient(connString, options).connect()
+        new MongoClient(connString, { useNewUrlParser: true, useUnifiedTopology: true  }).connect()
             .then((client) => this.db = client.db(dbName))
             .catch((err) => logger.error(err));
     }

@@ -4,7 +4,7 @@ Template/example code for simple, lightweight API for easier future project star
 ## Startup
 `git clone <link to this repo>`
 
-Create a config.ts file based on the format of config.example.ts, and fill constants with data relevant to your project.
+Create a .env file based on the format of .example.env, and fill constants with data relevant to your project.
 
 `cd api-template`
 

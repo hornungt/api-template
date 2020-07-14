@@ -1,6 +1,11 @@
-import { initAPI } from "./api";
 import winston from "winston";
+import { initAPI } from "./api";
+import { config } from "dotenv";
 
+// config env constants
+config();
+
+// create winston logger
 const logger = module.exports = winston.createLogger({
     transports: [new winston.transports.Console()],
     format: winston.format.combine(
@@ -9,4 +14,5 @@ const logger = module.exports = winston.createLogger({
     )
 });
 
+// start api
 initAPI(logger);
