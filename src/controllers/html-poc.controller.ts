@@ -1,8 +1,9 @@
 import { Application, Router } from 'express';
 import { Logger } from 'winston';
-import ControllerFunction from "./route-controller";
 import { MongoRepository } from '../repositories/mongo.repository';
+import ControllerFunction from "./route-controller";
 
+// Proof-of-concept controller that serves an html page
 export default ((app: Application, db: MongoRepository, logger: Logger) => {
     const router = Router();
 
@@ -12,5 +13,6 @@ export default ((app: Application, db: MongoRepository, logger: Logger) => {
                 root: "./src/public/views/"
             });
     });
+
     app.use("/html-poc", router);
 }) as ControllerFunction;

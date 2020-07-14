@@ -1,0 +1,4 @@
+add U and D functionality to crud controller
+add unit tests for crud controller
+
+reinstall nodejs and npm from scratch on raspberry pi, then figure out a hardware-integrative project
