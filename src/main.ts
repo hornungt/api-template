@@ -1,5 +1,5 @@
 import winston from "winston";
-import { initAPI } from "./api";
+import { initAPI, initAPISql } from "./api";
 import { config } from "dotenv";
 
 // config env constants
@@ -16,3 +16,4 @@ const logger = module.exports = winston.createLogger({
 
 // start api
 initAPI(logger);
+initAPISql(logger);

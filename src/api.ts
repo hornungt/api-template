@@ -8,14 +8,15 @@ import ControllerFunction from "./controllers/route-controller";
 export async function initAPI(logger: Logger) {
 
     const app = express();
-    const mongo = new MongoRepository(process.env.CONNECTION_STRING, process.env.DB, logger);
+    const mongo= new  MongoRepository(process.env.CONNECTION_STRING, process.env.MONGO_DB, logger);
+    // const sql: IRepository = new SqlRepository(); // todo theo - add params here
 
     app.use(cors());
     app.use(express.static('dist/public'));
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
 
-    // dynamically import controller code
+    // // dynamically import controller code
     (await Promise.all<ControllerFunction>(
         [
             "html-poc",
@@ -28,4 +29,17 @@ export async function initAPI(logger: Logger) {
     });
 
     app.listen(process.env.PORT);
+}
+
+import TimeLogController from "./controllers/time-log.controller";
+
+export async function initAPISql(logger: Logger) {
+    const app = express();
+    app.use(cors());
+    app.use(express.json());
+    app.use(express.urlencoded({ extended: true }));
+
+    TimeLogController(app, logger);
+
+    app.listen(8081);
 }

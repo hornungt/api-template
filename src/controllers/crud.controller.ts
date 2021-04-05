@@ -1,6 +1,7 @@
 import { Application, Router } from "express";
 import { Logger } from "winston";
 import { MongoRepository } from "../repositories/mongo.repository";
+import { SqlRepository } from "../repositories/sql.repository";
 import ControllerFunction from "./route-controller";
 import { DemoManager } from "../managers/demo.manager";
 

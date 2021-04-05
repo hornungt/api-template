@@ -1,4 +1,4 @@
-import { MongoClient, FilterQuery, UpdateQuery, Db, ObjectID } from "mongodb";
+import { MongoClient, FilterQuery, UpdateQuery, Db } from "mongodb";
 import { Logger } from "winston";
 
 // cleanly packages mongodb interactions
@@ -18,7 +18,7 @@ export class MongoRepository {
             .catch((err) => logger.error(err));
     }
 
-    async find(collection: string, filter: FilterQuery<any>) {
+    async read(collection: string, filter: FilterQuery<any>) {
         try {
             return this.db.collection(collection).find(filter);
         } catch {
@@ -26,7 +26,7 @@ export class MongoRepository {
         }
     }
 
-    async insert(collection: string, data: any) {
+    async create(collection: string, data: any) {
         const col = this.db.collection(collection);
         if (Array.isArray(data)) {
             return await col.insertMany(data);

@@ -14,14 +14,14 @@ export class DemoManager {
 
     async getAll(): Promise<any[]> {
         let ret: any[];
-        await this.repo.find(process.env.DEMO_COLLECTION, { "val": { $exists: true } })
+        await this.repo.read(process.env.DEMO_COLLECTION, { "val": { $exists: true } })
             .then(async (val) => ret = await val.toArray())
             .catch((err) => this.logger.error(err));
         return ret;
     }
 
     async createOne(obj: any) {
-        return (await this.repo.insert(process.env.DEMO_COLLECTION, obj)).result;
+        return (await this.repo.create(process.env.DEMO_COLLECTION, obj)).result;
     }
 
     async updateByID(id: string, newVal: any) {
